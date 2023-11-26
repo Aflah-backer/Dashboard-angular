@@ -19,3 +19,32 @@
     width: calc(100% - 5rem);
     margin-left: 5rem;
 }
+
+.progress-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+  
+    .content {
+      text-align: center;
+  
+      .icon {
+        font-size: 4em;
+        margin-bottom: 20px;
+        color: #333; /* Adjust color as needed */
+      }
+  
+      h1 {
+        font-size: 2em;
+        margin-bottom: 20px;
+        color: #333; /* Adjust color as needed */
+      }
+  
+      p {
+        font-size: 1.2em;
+        color: #666; /* Adjust color as needed */
+      }
+    }
+  }
+  

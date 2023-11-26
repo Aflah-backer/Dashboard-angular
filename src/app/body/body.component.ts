@@ -1,6 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, ActivatedRouteSnapshot, NavigationEnd, Router } from '@angular/router';
 import { MenuItem } from 'primeng/api';
+import { filter } from 'rxjs';
 
 @Component({
   selector: 'app-body',
@@ -9,7 +10,7 @@ import { MenuItem } from 'primeng/api';
 })
 export class BodyComponent implements OnInit {
 
-  constructor(private router: Router) {}
+  constructor(private router: Router, private activatedRoute: ActivatedRoute) { }
 
   isLoginPage(): boolean {
     return this.router.url === '/login';
@@ -33,14 +34,42 @@ export class BodyComponent implements OnInit {
   home: MenuItem | any;
 
   ngOnInit() {
-    
-      this.items = [
-        { label: 'Dashboard', routerLink: '/dashboard' },
-        { label: 'Reports', routerLink: '/dashboard/reports' },
-        { label: 'Settings', routerLink: '/dashboard/settings' }
-      ];
+    this.router.events.pipe(
+      filter(event => event instanceof NavigationEnd)
+    ).subscribe(() => {
+      
+      const currentRoute = this.activatedRoute.root.firstChild?.snapshot;
+    if (currentRoute) {
 
-      this.home = { icon: 'pi pi-home', routerLink: '/dashboard' };
+      const path = this.getDeepestChildPath(currentRoute);
+
+      if (path === 'settings') {
+        this.items = [
+          { icon: 'pi pi-home', routerLink: '/dashboard' },
+          { label: 'Dashboard', routerLink: '/dashboard' },
+          { label: 'Settings', routerLink: '/dashboard/settings' }
+        ];
+      } else if (path === 'reports') {
+        this.items = [
+          { icon: 'pi pi-home', routerLink: '/dashboard' },
+          { label: 'Dashboard', routerLink: '/dashboard' },
+          { label: 'Reports', routerLink: '/dashboard/reports' }
+        ];
+      } else {
+        this.items = [
+          { icon: 'pi pi-home', routerLink: '/dashboard' },
+          { label: 'Dashboard', routerLink: '/dashboard' }
+        ];
+      }
+    }
+  });
+  }
+  getDeepestChildPath(route: ActivatedRouteSnapshot): string {
+    if (route.firstChild) {
+      return this.getDeepestChildPath(route.firstChild);
+    } else {
+      return route.routeConfig?.path || '';
+    }
   }
 
 }

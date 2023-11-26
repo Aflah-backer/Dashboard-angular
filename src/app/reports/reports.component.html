@@ -1,0 +1,100 @@
+<div class="container">
+  <div class="box box1">
+    <div class="card1Label">
+      <h4>Test exicution</h4>
+    </div>
+    <div class="card-wrapper">
+      <div
+        class="card"
+        [ngStyle]="{ 'background-color': data.color }"
+        *ngFor="let data of cardData"
+      >
+        <div [ngStyle]="{ color: data.textColor }" class="card-value">
+          {{ data.percentage }}
+        </div>
+        <div class="card-label">
+          <h4>{{ data.value }}</h4>
+        </div>
+        <div class="card-label">
+          <p>{{ data.dec }}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="box box2">
+    <div class="card2Label">
+      <h4>Total API's</h4>
+    </div>
+    <div class="chart-container">
+      <ngx-charts-pie-chart
+        [results]="single"
+        [tooltipDisabled]="true"
+        [gradient]="gradient"
+        [legend]="false"
+        [customColors]="colorScheme"
+        [labels]="showLabels"
+        [doughnut]="true"
+        (select)="onSelect($event)"
+        (activate)="onActivate($event)"
+        (deactivate)="onDeactivate($event)"
+      >
+      </ngx-charts-pie-chart>
+    </div>
+    <!-- <div *ngFor="let data of single" class="chart-label">
+      {{ data.name }}
+    </div> -->
+  </div>
+</div>
+
+<div class="container">
+  <div class="box box2">
+    <div class="card2Label">
+      <h4>Test exicution</h4>
+    </div>
+    <div class="chart-container">
+      <ngx-charts-pie-chart
+        [results]="single2"
+        [gradient]="gradient"
+        [legend]="false"
+        [customColors]="colorScheme"
+        [labels]="showLabels"
+        [doughnut]="false"
+        (select)="onSelect($event)"
+        (activate)="onActivate($event)"
+        (deactivate)="onDeactivate($event)"
+      >
+      </ngx-charts-pie-chart>
+    </div>
+  </div>
+  <div class="box box1">
+    <div class="card1Label">
+      <h4>Most failed API's</h4>
+    </div>
+    <div style="height: 180px; width: 80%">
+      <ngx-charts-bar-horizontal
+        [results]="single"
+        [gradient]="gradient"
+        [legend]="true"
+        (select)="onSelect($event)"
+        (activate)="onActivate($event)"
+        (deactivate)="onDeactivate($event)"
+      >
+      </ngx-charts-bar-horizontal>
+    </div>
+  </div>
+</div>
+
+<div class="container">
+  <div class="box box1">
+    <div class="card1Label">
+      <h4>Average response time of test suites</h4>
+    </div>
+    <div class="average-test-wrapper" *ngFor="let data of averageData">
+      <div class="icon-name">
+        <i class="fal fa-folder"></i>
+        <p>{{ data.label }}</p>
+      </div>
+      <div class="text-value">{{ data.value }}</div>
+    </div>
+  </div>
+</div>

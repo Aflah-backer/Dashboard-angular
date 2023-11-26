@@ -1,0 +1,12 @@
+<div class="body" [ngClass]="getBodyClass()">
+  <ng-container *ngIf="!isLoginPage()">
+    <div style="margin-top: -35px" class="card flex justify-content-center">
+      <p-breadcrumb
+        class="max-w-full"
+        [model]="items"
+        [home]="home"
+      ></p-breadcrumb>
+    </div>
+  </ng-container>
+  <router-outlet></router-outlet>
+</div>

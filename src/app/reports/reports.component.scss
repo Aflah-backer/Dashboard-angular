@@ -1,0 +1,91 @@
+.container {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  min-height: 200px;
+  margin-bottom: 1.5rem;
+}
+
+.box {
+  box-sizing: border-box;
+  background: #fff;
+  border-radius: 5px;
+  padding: 15px; 
+  height: 100%;
+  width: 100%;
+}
+
+.box1 {
+  flex: 0 0 70%; 
+  max-width: 59%;
+  max-height: 100%;
+  .card1Label{
+    display: flex;
+    justify-content: flex-start;
+  }
+  .average-test-wrapper{
+    display: flex;
+    justify-content: space-between;
+    padding: 15px;
+    .icon-name{
+      display: flex;
+      gap: 0.5rem;
+      align-items: center;
+    }
+    .text-value{
+      color: green;
+    }
+  }
+  .card-wrapper{
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    padding: 5px;
+    .card {
+      width: 110px;
+      height: 140px;
+      background-color: #f0f0f0;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: start;
+      border-radius: 8px;
+      padding: 1rem .3rem 1rem .6rem;
+    }
+    
+    .card-value {
+      font-size: 24px;
+      font-weight: bold;
+    }
+    
+    .card-label {
+      font-size: 14px;
+      margin-top: 5px;
+    }
+  }
+}
+
+.box2 {
+  flex: 0 0 30%; 
+  max-width: 39%;
+  .card2Label{
+    display: flex;
+    justify-content: center;
+  }
+  .chart-container{
+    max-height: 190px;
+    max-width: 480px;
+  }
+  .chart-label{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .box {
+    flex: 0 0 100%;
+    max-width: 100%;
+  }
+}
